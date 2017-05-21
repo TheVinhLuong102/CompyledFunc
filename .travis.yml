@@ -7,6 +7,7 @@ python:
   - "3.7-dev" # 3.7 development branch
 
 install: 
-  - "pip install sdist bdist_wheel upload"
+  # - "pip install sdist bdist_wheel upload"
+  
 script: 
   - "python setup.py install"
