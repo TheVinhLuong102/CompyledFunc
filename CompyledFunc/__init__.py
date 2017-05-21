@@ -13,11 +13,11 @@ except:
 class CompyledFunc:
     def __init__(self, var_names_and_syms={}, dict_or_expr={}):
         if hasattr(dict_or_expr, 'keys'):
-            for k, v in dict_or_expr.items():
+            for k, v in list(dict_or_expr.items()):
                 dict_or_expr[k] = CompyledFunc(var_names_and_syms=var_names_and_syms, dict_or_expr=v)
             self.Compyled = dict_or_expr
         elif is_non_atomic_sympy_expr(dict_or_expr):
-            self.Vars = tuple(var for var, symbol in var_names_and_syms.items()
+            self.Vars = tuple(var for var, symbol in list(var_names_and_syms.items())
                               if symbol and not(isinstance(symbol, FLOAT_TYPES)))
             inputs = (var_names_and_syms[var] for var in self.Vars)
             if use_theano:
